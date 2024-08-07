@@ -1,0 +1,61 @@
+VISAN Rares-Stefan - 312CC
+
+Am construit structuri de date pentru urmatoarele: lista dublu inlantuita,
+banda magica, lista simplu inlantuita, coada, stiva.
+Functia init_tape() initializeaza banda magica formata din lista dublu 
+inlantuita cu santinela si deget, tot o lista dubla. De asemenea, introduce
+primul nod al listei cu caracterul # si seteaza degetul pe acesta.
+Functia init_queue() initializeaza coada formata din 2 liste simple.
+Functia enqueue() adauga in coada comenzile care asteapta sa fie executate. Se
+creeaza un nou nod si se leaga de lista.
+Functia dequeue() elimina din coada comenzile care urmeaza sa fie executate.
+Totodata, returneaza comanda eliminata din coada pentru a fi executata.
+Functia push() adauga in stiva pozitiile degetului inainte ca comenzile sa fie
+executate.
+Functia pop() elimina din stiva pozitiile degetului.
+Functia move_left() corespunde comenzii MOVE_LEFT. Se verifica ca degetul nu
+este pe prima pozitie din banda, se adauga pozitia degetului in stiva undo si
+se muta degetul cu o pozitie spre stanga. Daca degetul este pe prima pozitie in
+banda, nu se intampla nimic.
+Functia move_right() corespunde comenzii MOVE_RIGHT. Se adauga pozitia degetului
+in stiva undo. Daca degetul este pe ultima pozitie in banda, se creeaza un nod 
+nou, se leaga la lista si se muta degetul pe el. Daca nu, doar mut degetul cu
+o pozitie spre dreapta.
+Functia move_left_char() corespunde comenzii MOVE_LEFT_CHAR <C>. Parcurge banda
+de pe pozitia degetului spre stanga pana la gasirea unui element egal cu <C>.
+Daca nu se gaseste, se afiseaza ERROR.
+Functia move_right_char() corespunde comenzii MOVE_RIGHT_CHAR <C>. Parcurge
+banda de pe pozitia degetului spre dreapta pana la gasirea unui element egal cu
+<C>. Daca nu se gaseste, se creeaza un nod nou, cu elementul # si se leaga la
+lista, iar degetul se muta pe pozitia acestui nod.
+Functia write() corespunde comenzii WRITE <C>. Aceasta schimba elementul de pe
+pozitia degetului in caracterul <C>.
+Functia insert_left() corespunde comenzii INSERT_LEFT <C>. Daca degetul este pe
+primul element din banda, se afiseaza ERROR. Daca nu, se creeaza un nod nou cu
+elementul <C>, se leaga la lista si degetul se muta pe pozitia acestuia.
+Functia insert_right() corespunde comenzii INSERT_RIGHT <C>. Se creeaza un nod
+nou cu elementul <C>, se leaga la lista si degetul se muta pe pozitia acestuia.
+Functia show_current() corespunde comenzii SHOW_CURRENT. Aceasta afiseaza
+elementul de pe pozitia curenta a degetului.
+Functia show() corespunde comenzii SHOW. Aceasta parcurge intreaga banda si
+afiseaza elementele acesteia. Daca pozitia unui nod este egala cu pozitia
+degetului afisam | la stanga si la dreapta elementului.
+Functia execute() corespunde comenzii EXECUTE. Aceasta extrage comanda din coada
+daca contine spatiu (adica este o comanda cu <C> la final), memoreaza intr-o
+variabila caracterul <C>, iar comanda este separata de <C>. Se verifica ce tip
+de comanda este si se apeleaza functia corespunzatoare.
+Functia undo() corespunde comenzii UNDO. Aceasta extrage din stiva undo pozitia
+anterioara a degetului, adauga in stiva redo pozitia actuala a degetului si 
+schimba pozitia degetului cu cea extrasa din stiva.
+Functia redo() corespunde comenzii REDO. Aceasta extrage din stiva redo pozitia
+anterioara a degetului, adauga in stiva undo pozitia actuala a degetului si 
+schimba pozitia degetului cu cea extrasa din stiva.
+Am construit functiile free_dlist(), free_stack() si free_queue() pentru a 
+elibera memoria alocata acestor structuri de date. Cu ajutorul functiilor,
+parcurg listele si eliberez pe rand memoria alocata fiecarui nod din liste.
+Citesc din fisier numarul de comenzi, apoi pe rand comenzile. In functie de
+tipul comenzii, apelez functia corespunzatoare. Daca comanda este de tipul
+celor care asteapta comanda EXECUTE, o adaug in coada de comenzi.
+La final, apelez functiile de eliberare a memoriei si inchid fisierele.
+
+Punctaj obtinut local: 120/120.
